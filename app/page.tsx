@@ -105,7 +105,7 @@ const Portfolio = () => {
       tags: ["React", "Next.js", "Prisma", "MySQL", "IMARK"],
       users: "Enterprise Banking Use",
     logo: "fewa by imark.png",
-      image: "/projects/mms.png",
+      image: "/projects/ipos.png",
     },
     {
       title: "fewa Card Portal",
@@ -127,7 +127,7 @@ const Portfolio = () => {
       tags: ["React", "Next.js", "REST API", "Clean Architecture"],
       users: "Bank Customers",
       logo: "ccms-logo.png",
-      image: "/projects/mms.png",
+      image: "/projects/ccms.png",
     },
     {
       title: "Fewa MMS – Merchant Management System",
@@ -160,7 +160,7 @@ const Portfolio = () => {
       tags: ["React", "Analytics", "Payments", "Visa", "Mastercard"],
       users: "1K+ Merchants",
       logo: "fewa-merchant-logo.svg",
-      image: "/projects/mms.png",
+      image: "/projects/merchant-portal.png",
     },
     {
       title: "FewaTMS v3 – Terminal Management System",
@@ -179,8 +179,8 @@ const Portfolio = () => {
               ],
       tags: [".NET 10", "IMARK", "Card Management", "NEPS"],
       users: "Banking & Cooperative Sector",
-      logo: "fewa-mms-logo.svg",
-      image: "/projects/mms.png",
+      logo: "fewa-tms-logo.png",
+      image: "/projects/tms.png",
     },
   ];
 
