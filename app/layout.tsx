@@ -1,41 +1,37 @@
-import type { Metadata } from "next";
-import { Fira_Code, Inter, Poppins } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 
-const poppins = Poppins({
+const jakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const firaCode = Fira_Code({
-  variable: "--font-mono",
-  subsets: ["latin"],
-});
+// Light is the default. Dark is applied only if the user chose it before.
+const themeInit = `try{var d=localStorage.getItem('theme')==='dark';document.documentElement.classList.toggle('dark',d)}catch(e){}`;
+const description =
+  "Portfolio of Neha Chand, a software engineer specializing in .NET, Angular, and secure fintech web applications.";
 
 export const metadata: Metadata = {
   title: "Neha Chand",
-  description:
-    "Portfolio of Neha Chand, a software developer specializing in Angular, .NET, React, and modern web technologies. Explore projects, skills, and contact information.",
+  description,
   keywords: [
     "Neha Chand",
-    "Software Developer",
+    "Software Engineer",
     "Portfolio",
     "Angular",
     ".NET",
-    "React",
-    "Next.js",
-    "Web Developer",
-    "Full Stack",
+    "C#",
     "Fintech",
+    "Full Stack",
   ],
-  authors: [{ name: "Neha Chand", url: "https://nehachand.dev" }],
+  authors: [{ name: "Neha Chand", url: "https://nehachand.com.np" }],
   creator: "Neha Chand",
   openGraph: {
-    title: "Neha Chand – Software Developer Portfolio",
-    description:
-      "Portfolio of Neha Chand, a software developer specializing in Angular, .NET, React, and modern web technologies.",
+    title: "Neha Chand – Software Engineer",
+    description,
     url: "https://nehachand.com.np",
     siteName: "Neha Chand Portfolio",
     images: [
@@ -51,33 +47,31 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Neha Chand – Software Developer Portfolio",
-    description:
-      "Portfolio of Neha Chand, a software developer specializing in Angular, .NET, React, and modern web technologies.",
+    title: "Neha Chand – Software Engineer",
+    description,
     creator: "@nehachand",
     images: ["https://nehachand.com.np/og-image.png"],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
-  },
-  themeColor: "#4f46e5",
+  robots: { index: true, follow: true },
   metadataBase: new URL("https://nehachand.com.np"),
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+      </head>
       <body
-        className={`${poppins.variable} ${firaCode.variable} antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors`}
+        className={`${jakarta.variable} font-sans antialiased bg-white dark:bg-[#070b16]`}
       >
         {children}
       </body>

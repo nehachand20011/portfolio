@@ -1,31 +1,42 @@
-// import { Moon, Sun } from "lucide-react";
-// import { useState } from "react";
+"use client";
 
-// const ThemeSwitch = () => {
-//   const [theme, setTheme] = useState("dark");
+import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 
-//   const toggleTheme = () => {
-//     const newTheme = theme === "light" ? "dark" : "light";
-//     setTheme(newTheme);
-//     localStorage.setItem("theme", newTheme);
-//   };
+const ThemeSwitch = () => {
+  const [isDark, setIsDark] = useState(false);
 
-//   return (
-//     <div className="flex items-center gap-4">
-//       <button
-//         onClick={toggleTheme}
-//         className={`p-2 rounded-lg transition-all ${
-//           theme === "dark" ? "hover:bg-gray-800" : "hover:bg-gray-100"
-//         }`}
-//       >
-//         {theme === "light" ? (
-//           <Moon className="w-5 h-5" />
-//         ) : (
-//           <Sun className="w-5 h-5 text-yellow-400" />
-//         )}
-//       </button>
-//     </div>
-//   );
-// };
+  useEffect(() => {
+    const frame = requestAnimationFrame(() =>
+      setIsDark(document.documentElement.classList.contains("dark"))
+    );
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
-// export default ThemeSwitch;
+  const toggle = () => {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    try {
+      localStorage.setItem("theme", next ? "dark" : "light");
+    } catch {}
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      title={isDark ? "Light mode" : "Dark mode"}
+      className={`flex h-8 w-8 items-center justify-center rounded-full border shadow-sm transition-all duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 lg:h-10 lg:w-10 ${
+        isDark
+          ? "border-white/10 bg-white/5 text-violet-300"
+          : "border-slate-200 bg-white text-amber-500"
+      }`}
+    >
+      {isDark ? <Moon size={17} /> : <Sun size={17} />}
+    </button>
+  );
+};
+
+export default ThemeSwitch;
