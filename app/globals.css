@@ -117,3 +117,8 @@ svg {
     transparent
   );
 }
+
+/* Hide Netlify promotional badge */
+iframe#nl-badge-frame {
+    display: none !important;
+}
